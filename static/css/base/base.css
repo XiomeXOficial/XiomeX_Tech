@@ -1,0 +1,46 @@
+:root{
+
+    --blanco:#ffffff;
+    --fondo:#F2F1EF;
+    --negro:#000000;
+    --amarillo:#F5B700;
+    --azul-principal:#011E60;
+    --azul-secundario:#6A7FC0;
+
+    --radio:6px;
+
+    --transicion:.25s;
+
+    --transicion-larga:.5s;
+
+}
+
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+}
+
+body{
+
+    background:var(--fondo);
+
+    display:flex;
+
+    flex-direction:column;
+
+    min-height:100vh;
+
+}
+
+main{
+
+    flex:1;
+
+    display: flex;
+
+}

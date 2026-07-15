@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>XIOMEX TECH</title>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="{% static 'css/base/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pages/productos.css' %}">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body>
+
+{% include 'includes/header.html' %}
+
+<main>
+    <div class="temporal-productos-img" >
+        <img src="{% static 'img/productos-example.png' %}" alt="productos-example">
+    </div>
+</main>
+
+{% include 'includes/footer.html' %}
+
+</body>
+</html>

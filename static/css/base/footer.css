@@ -1,0 +1,117 @@
+/*=========================================
+                FOOTER
+=========================================*/
+
+footer{
+    background: var(--negro);
+    color: var(--blanco);
+
+}
+/* Contenedor */
+
+
+.footer-contenido{
+    max-width: 1200px;
+    line-height: 1.8;
+    margin: auto;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+/*=========================================
+                LOGO 2
+=========================================*/
+
+.logo2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo2 img{
+    width: 170px;
+    height: auto;
+    margin-bottom: 25px;
+
+    display: block;
+    margin: 0 auto 20px;
+}
+
+.logo2 p{
+
+    text-align: center;
+    line-height: 1.5;
+
+    max-width: 180px;
+}
+
+/*=========================================
+                SECCIONES
+=========================================*/
+
+/* Columnas */
+
+.footer-contenido section{
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+
+    padding: 0 30px;
+}
+
+.footer-contenido section:not(:last-child){
+    border-right: 1px solid var(--blanco);
+}
+
+/*=========================================
+                ENLACES
+=========================================*/
+
+
+.footer-contenido a{
+    color: var(--blanco);
+    text-decoration: none;
+
+    transition: var(--transicion);
+}
+
+.footer-contenido a:hover{
+    background-color: var(--blanco);
+    color: var(--negro);
+}
+
+/*Titulos*/
+
+.footer-contenido h3{
+    margin-bottom: 10px;
+}
+
+/* Párrafos */
+
+.footer-contenido p{
+    margin: 0;
+}
+
+/*=========================================
+            COPYRIGHT
+=========================================*/
+
+
+.copyright{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-top: 2px solid var(--fondo);
+
+    padding: 10px 0 20px;
+}
+
+.copyright p{
+    margin: 0;
+}

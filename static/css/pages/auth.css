@@ -1,0 +1,402 @@
+/* ==========================
+            MAIN
+========================== */
+
+main{
+
+    flex:1;
+
+    display:flex;
+
+}
+
+/* ==========================
+   CONTENEDOR GENERAL
+========================== */
+
+.auth-container{
+
+    position:relative;
+
+    flex:1;
+
+    display:flex;
+
+    min-height:496px;
+
+    overflow:hidden;
+
+}
+
+/* ==========================
+   FONDOS
+========================== */
+
+.auth-side{
+
+    width:50%;
+    height:100%;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    background:linear-gradient(135deg,var(--azul-secundario),var(--azul-principal));
+
+    overflow:hidden;
+
+}
+
+.auth-left{
+
+    border-right:1px solid rgba(255,255,255,.15);
+
+}
+
+.auth-right{
+
+    border-left:1px solid rgba(255,255,255,.15);
+
+}
+
+/* ==========================
+   TEXTO DEL FONDO
+========================== */
+
+.side-content{
+
+    width:70%;
+
+    color:white;
+
+    text-align:center;
+
+    transition:
+        transform .4s,
+        opacity .4s;
+
+}
+
+.side-content h1{
+
+    font-size:46px;
+
+    margin-bottom:20px;
+
+}
+
+.side-content p{
+
+    line-height:1.8;
+
+    margin-bottom:35px;
+
+}
+
+/* ==========================
+   PANEL DESLIZANTE
+========================== */
+
+.auth-panel{
+
+    position:absolute;
+
+    left:0;
+    top:0;
+
+    width:50%;
+    height:100%;
+
+    background:var(--blanco);
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    overflow:hidden;
+
+    transition:
+        transform .8s cubic-bezier(.77,0,.18,1),
+        box-shadow .3s;
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,.18);
+
+}
+
+/* Cuando vaya al register */
+
+.auth-panel.active{
+
+    transform:translateX(100%);
+
+    border-radius:25px 0 0 25px;
+}
+
+/* ==========================
+   FORMULARIOS
+========================== */
+
+.auth-form{
+
+    position:absolute;
+
+    width:70%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+    transition:
+        opacity .35s,
+        transform .45s,
+        visibility 0s linear .35s;
+
+}
+
+/*==========================
+LOGIN
+==========================*/
+
+#login-form{
+
+    opacity:1;
+
+    visibility:visible;
+
+    transform:translateX(0);
+
+    pointer-events:auto;
+
+    z-index:2;
+}
+
+/*==========================
+REGISTER
+==========================*/
+
+#register-form{
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transform:translateX(40px);
+
+    pointer-events:none;
+
+    z-index:1;
+}
+
+/*==========================
+ANIMACIÓN
+==========================*/
+
+.auth-panel.active #login-form{
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transform:translateX(-40px);
+
+    pointer-events:none;
+
+    z-index:1;
+}
+
+.auth-panel.active #register-form{
+
+    opacity:1;
+
+    visibility:visible;
+
+    transform:translateX(0);
+
+    pointer-events:auto;
+
+    z-index:2;
+}
+/* ==========================
+   INPUTS
+========================== */
+
+.input-box{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:15px;
+
+    border:1px solid #d8d8d8;
+
+    border-radius:12px;
+
+    transition:
+        border-color .25s,
+        box-shadow .25s;
+
+    font-family:inherit;
+
+}
+
+.input-box:focus-within{
+
+    border-color:var(--amarillo);
+
+    box-shadow:0 0 0 4px rgba(245,183,0,.18);
+
+}
+
+.input-box i{
+
+    color:var(--azul-principal);
+
+    font-size:18px;
+
+    transition:.25s;
+
+}
+
+.input-box:focus-within i{
+
+    color:var(--amarillo);
+
+}
+
+.input-box input{
+
+    width:100%;
+
+    border:none;
+
+    outline:none;
+
+    font-size:16px;
+
+    background:transparent;
+
+}
+
+/* ==========================
+   BOTONES
+========================== */
+
+.primary-btn{
+
+    margin-top:10px;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    background:var(--azul-principal);
+
+    color:white;
+
+    font-size:16px;
+
+    transition:
+        background .3s,
+        transform .25s,
+        box-shadow .25s;
+
+    box-shadow:
+        0 8px 20px rgba(1,30,96,.25);
+
+    font-weight:600;
+
+    letter-spacing:.4px;
+}
+
+.primary-btn:hover{
+
+    color: #000000;
+
+    background:var(--amarillo);
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 15px 30px rgba(1,30,96,.35);
+
+}
+
+.secondary-btn{
+
+    padding:14px 35px;
+
+    border:2px solid white;
+
+    background:transparent;
+
+    color:white;
+
+    border-radius:40px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    transition:
+        .3s;
+
+    font-weight:600;
+
+    letter-spacing:.4px;
+
+}
+
+.secondary-btn:hover{
+
+    color: #000000;
+
+    background:var(--amarillo);
+
+    transform:translateY(-3px);
+
+}
+/* ==========================
+   TITULOS
+========================== */
+
+.auth-form h1{
+
+    text-align:center;
+
+    margin-bottom:15px;
+
+    color:var(--azul-principal);
+
+}
+
+@keyframes panelAppear{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(25px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}

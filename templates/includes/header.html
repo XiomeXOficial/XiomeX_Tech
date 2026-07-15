@@ -1,0 +1,69 @@
+{% load static %}
+<header>
+
+<nav class="navbar">
+
+    <!-- Logo -->
+    <a class="logo1" href="{% url 'index' %}">
+        <img src="{% static 'img/icon1.png' %}" alt="Xiomex Tech">
+    </a>
+
+    <!-- Menú -->
+    <div class="nav-links">
+        <a href="{% url 'index' %}">Inicio</a>
+        <a href="{% url 'productos' %}">Productos</a>
+        <a href="{% url 'servicios' %}">Servicios</a>
+        <a href="{% url 'index' %}#footer">Acerca de</a>
+    </div>
+
+    <!-- Buscador -->
+    <form class="search-bar">
+        <input
+            type="search"
+            placeholder="Busca productos o servicios">
+
+        <button type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+    </form>
+
+    <!-- Iconos -->
+    <div class="nav-icons">
+
+        <a class="carrito-icon" href="{% url 'carrito' %}">
+            <div class="carrito-circulo">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+            <span>Carrito</span>
+        </a>
+
+        <div class="perfil-menu">
+
+            <div class="perfil-icon">
+                <a class="perfil-text" href="{% url 'perfil' %}">
+                    <div class="perfil-circulo">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+
+                    <span>Perfil</span>
+                </a>
+            </div>
+
+            <div class="perfil-dropdown">
+
+                <a href="{% url 'auth' %}">
+                    Iniciar Sesión
+                </a>
+
+                <a href="{% url 'auth' %}?mode=register">
+                    Registrarse
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+</nav>
+
+</header>
