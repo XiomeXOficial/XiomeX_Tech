@@ -1,28 +1,27 @@
+/*=========================================
+                VARIABLES
+=========================================*/
+
 :root{
-
-    --blanco:#ffffff;
-    --fondo:#F2F1EF;
-    --negro:#000000;
-    --amarillo:#F5B700;
-    --azul-principal:#011E60;
-    --azul-secundario:#6A7FC0;
-
-    --radio:6px;
-
-    --transicion:.25s;
-
-    --transicion-larga:.5s;
-
+    --blanco: #ffffff;
+    --fondo: #F2F1EF;
+    --negro: #000000;
+    --amarillo: #F5B700;
+    --azul-principal: #011E60;
+    --azul-secundario: #6A7FC0;
+    --radio: 6px;
+    --transicion: .25s;
+    --transicion-larga: .5s;
 }
 
+/*=========================================
+                RESET
+=========================================*/
+
 *{
-
-    margin:0;
-
-    padding:0;
-
-    box-sizing:border-box;
-
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body{
@@ -36,6 +35,9 @@ body{
     min-height:100vh;
 
 }
+/* ==========================
+            MAIN
+========================== */
 
 main{
 

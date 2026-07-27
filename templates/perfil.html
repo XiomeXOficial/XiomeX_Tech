@@ -6,22 +6,25 @@
     <title>XIOMEX TECH</title>
     <meta charset="UTF-8">
 
+    <link rel="stylesheet" href="{% static 'css/base/base.css' %}">
     <link rel="stylesheet" href="{% static 'css/base/header.css' %}">
     <link rel="stylesheet" href="{% static 'css/pages/perfil.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/toast.css' %}">
     <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+          href="{% static 'fontawesome/all.min.css' %}">
 </head>
 
 <body>
 
 {% include 'includes/header.html' %}
-
+{% include "includes/toast.html" %}
 <main>
     <div class="temporal-perfil-img" >
         <img src="{% static 'img/perfil-example.png' %}" alt="perfil-example">
     </div>
 </main>
 
+<script src="{% static 'javascript/toast.js' %}"></script>
 
 </body>
 </html>

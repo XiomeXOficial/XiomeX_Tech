@@ -1,0 +1,113 @@
+/*========================================= 
+                    *TOAST*
+*=========================================*/
+
+/* Contenedor */
+
+.toast-container{
+
+    position: fixed;
+
+    top: 110px;
+    right: 20px;
+
+    z-index: 9999;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 15px;
+
+}
+
+/*=========================================*
+*NOTIFICACIÓN*
+*=========================================*/
+
+.toast{
+
+    min-width:320px;
+
+    padding:15px 20px;
+
+    border-radius:10px;
+
+    color:var(--blanco);
+
+    font-weight:600;
+
+    display:block;
+
+    transform: translateY(-100px);
+
+    animation: toast-entrada .35s ease;
+
+}
+
+/*=========================================*
+*TIPOS*
+*=========================================*/
+
+/* Éxito */
+
+.toast.success{
+
+    background: #22c55e;
+
+}
+
+/* Error */
+
+.toast.error{
+
+    background: #ef4444;
+
+}
+
+/*=========================================*
+*ANIMACIONES*
+*=========================================*/
+
+/* Entrada */
+@keyframes toast-entrada{
+
+from{
+
+    opacity:0;
+
+    transform:translateY(-100px);
+
+}
+
+
+to{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
+}
+
+/*salida*/
+
+@keyframes toast-salida{
+
+    from{
+
+        opacity: 1;
+
+        transform: translateX(0);
+
+    }
+
+    to{
+
+        opacity: 0;
+
+        transform: translateX(70px);
+
+    }
+
+}

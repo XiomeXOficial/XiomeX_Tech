@@ -1,11 +1,17 @@
 from django.urls import path
-from . import views
+
+from .views.index import index
+from .views.auth import auth
+from .views.productos import productos
+from .views.servicios import servicios
+from .views.perfil import perfil
+from .views.carrito import carrito
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path("auth/", views.auth, name="auth"),
-    path("productos/", views.productos, name="productos"),
-    path("servicios/", views.servicios, name="servicios"),
-    path("perfil/", views.perfil, name="perfil"),
-    path("carrito/", views.carrito, name="carrito"),
+    path("", index, name="index"),
+    path("auth/", auth, name="auth"),
+    path("productos/", productos, name="productos"),
+    path("servicios/", servicios, name="servicios"),
+    path("perfil/", perfil, name="perfil"),
+    path("carrito/", carrito, name="carrito"),
 ]
