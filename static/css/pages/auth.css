@@ -1,19 +1,16 @@
 /* ==========================
-   CONTENEDOR GENERAL
+CONTENEDOR GENERAL
 ========================== */
-
 .auth-container{
+    position: relative;
 
-    position:relative;
+    flex: 1;
 
-    flex:1;
+    display: flex;
 
-    display:flex;
+    min-height: 496px;
 
-    min-height:496px;
-
-    overflow:hidden;
-
+    overflow: hidden;
 }
 
 /* ==========================
@@ -22,7 +19,7 @@
 
 .auth-side{
 
-    width:50%;
+    width:55%;
     height:100%;
 
     display:flex;
@@ -54,11 +51,25 @@
 
 .side-content{
 
-    width:70%;
+    background:rgba(255,255,255,.05);
+
+    padding: 40px;
+
+    border-radius: 25px;
+
+    backdrop-filter: blur(5px);
+
+    width:50%;
+    max-width:450px;
 
     color:white;
 
     text-align:center;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content: center;
 
     transition:
         transform .4s,
@@ -68,17 +79,17 @@
 
 .side-content h1{
 
-    font-size:46px;
-
-    margin-bottom:20px;
+    font-size:38px;
+    line-height:1.2;
+    margin-bottom:15px;
 
 }
 
 .side-content p{
 
-    line-height:1.8;
-
-    margin-bottom:35px;
+    line-height:1.6;
+    max-width: 350px;
+    margin-bottom:25px;
 
 }
 
@@ -89,12 +100,13 @@
 .auth-panel{
 
     position:absolute;
+    margin:25px;
 
     left:0;
     top:0;
 
-    width:50%;
-    height:100%;
+    width:42%;
+    height:calc(100% - 50px);
 
     background:var(--blanco);
 
@@ -108,7 +120,7 @@
     transition:
         transform .8s cubic-bezier(.77,0,.18,1),
         box-shadow .3s;
-
+    border-radius: 30px;
     box-shadow:
         0 15px 45px rgba(0,0,0,.18);
 
@@ -118,7 +130,7 @@
 
 .auth-panel.active{
 
-    transform:translateX(100%);
+    transform:translateX(calc(100% + 150px));
 
     border-radius:25px 0 0 25px;
 }
@@ -131,13 +143,13 @@
 
     position:absolute;
 
-    width:70%;
+    width:75%;
 
     display:flex;
 
     flex-direction:column;
 
-    gap:18px;
+    gap:12px;
 
     transition:
         opacity .35s,
@@ -219,13 +231,13 @@ ANIMACIÓN
 
     align-items:center;
 
-    gap:15px;
+    gap:10px;
 
-    padding:15px;
+    padding:10px 12px;
 
-    border:1px solid #d8d8d8;
+    border:1px solid #333333;
 
-    border-radius:12px;
+    border-radius:10px;
 
     transition:
         border-color .25s,
@@ -267,7 +279,7 @@ ANIMACIÓN
 
     outline:none;
 
-    font-size:16px;
+    font-size:14px;
 
     background:transparent;
 
@@ -281,7 +293,7 @@ ANIMACIÓN
 
     margin-top:10px;
 
-    padding:15px;
+    padding:11px;
 
     border:none;
 
@@ -293,7 +305,7 @@ ANIMACIÓN
 
     color:white;
 
-    font-size:16px;
+    font-size:14px;
 
     transition:
         background .3s,
@@ -363,7 +375,9 @@ ANIMACIÓN
 
     text-align:center;
 
-    margin-bottom:15px;
+    font-size: 28px;
+
+    margin-bottom:10px;
 
     color:var(--azul-principal);
 

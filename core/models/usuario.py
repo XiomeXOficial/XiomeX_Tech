@@ -49,4 +49,3 @@ class Usuario(models.Model):
     def __str__(self):
 
         return self.usu_correo
-# Create your models here.

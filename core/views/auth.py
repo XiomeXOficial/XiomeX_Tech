@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password, check_password
 
-from ..models import Usuario
+from ..models.usuario import Usuario
 
 def auth(request):
 
@@ -45,6 +45,16 @@ def auth(request):
             correo = request.POST.get("correo")
             telefono = request.POST.get("telefono")
             password = request.POST.get("password")
+            confirmar_password = request.POST.get("confirmar_password")
+
+            if password != confirmar_password:
+
+                messages.error(
+                    request,
+                    "Las contraseñas no coinciden."
+                )
+
+                return redirect("/auth/?mode=register")
 
             if Usuario.objects.filter(usu_correo=correo).exists():
 
