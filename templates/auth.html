@@ -116,6 +116,13 @@
                     Iniciar Sesión
 
                 </button>
+                
+            <a
+                href="{% url 'recuperar_contrasena' %}"
+                class="forgot-password"
+            >
+                ¿Olvidaste tu contraseña?
+            </a>
 
             </form>
 
@@ -197,7 +204,7 @@
 
                     <input
                         type="password"
-                        name="confirmar-password"
+                        name="confirmar_password"
                         placeholder="Confirme su contraseña"
                         maxlength="255"                        
                         required>

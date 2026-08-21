@@ -4,7 +4,7 @@
 
 :root{
     --blanco: #ffffff;
-    --fondo: #F2F1EF;
+    --fondo: #f0f0f0;
     --negro: #000000;
     --amarillo: #F5B700;
     --azul-principal: #011E60;
@@ -24,7 +24,7 @@
     box-sizing: border-box;
 }
 
-body{
+html, body{
 
     background:var(--fondo);
 

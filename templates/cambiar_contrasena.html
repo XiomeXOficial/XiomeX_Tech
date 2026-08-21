@@ -1,0 +1,318 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <title>XIOMEX TECH</title>
+
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet"
+          href="{% static 'css/base/base.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'css/base/footer.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'css/pages/cambiar_contrasena.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'css/components/toast.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'fontawesome/all.min.css' %}">
+
+</head>
+
+<body>
+
+    {% include "includes/toast.html" %}
+
+
+    <main>
+
+        <div class="cambiar-contrasena-container">
+
+            <div class="cambiar-contrasena-card">
+
+
+                <!-- VOLVER -->
+
+                {% if modo_recuperacion %}
+
+                    <a
+                        href="{% url 'auth' %}"
+                        class="volver-link"
+                    >
+
+                        <i class="fa-solid fa-arrow-left"></i>
+
+                        Volver al inicio de sesión
+
+                    </a>
+
+                {% else %}
+
+                    <a
+                        href="{% url 'seguridad' %}"
+                        class="volver-link"
+                    >
+
+                        <i class="fa-solid fa-arrow-left"></i>
+
+                        Volver a seguridad
+
+                    </a>
+
+                {% endif %}
+
+
+                <!-- ICONO -->
+
+                <div class="cambiar-contrasena-icono">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                </div>
+
+
+                <!-- TITULO -->
+
+                {% if modo_recuperacion %}
+
+                    <h1>
+                        Recuperar contraseña
+                    </h1>
+
+                    <p>
+                        Ingresa una nueva contraseña para recuperar
+                        el acceso a tu cuenta.
+                    </p>
+
+                {% else %}
+
+                    <h1>
+                        Cambiar contraseña
+                    </h1>
+
+                    <p>
+                        Actualiza la contraseña de tu cuenta.
+                    </p>
+
+                {% endif %}
+
+
+                <!-- FORMULARIO -->
+
+                <form method="POST">
+
+                    {% csrf_token %}
+
+
+                    <!-- NUEVA CONTRASEÑA -->
+
+                    <div class="form-group">
+
+                        <label for="password_nueva">
+                            Nueva contraseña
+                        </label>
+
+
+                        <div class="password-input">
+
+                            <i class="fa-solid fa-lock input-icon"></i>
+
+                            <input
+                                type="password"
+                                id="password_nueva"
+                                name="password_nueva"
+                                maxlength="255"
+                                placeholder="Digite su nueva contraseña"
+                                autocomplete="new-password"
+                                required
+                            >
+
+
+                            <button
+                                type="button"
+                                class="mostrar-password"
+                                data-target="password_nueva"
+                                aria-label="Mostrar contraseña"
+                            >
+
+                                <i class="fa-solid fa-eye"></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- CONFIRMAR CONTRASEÑA -->
+
+                    <div class="form-group">
+
+                        <label for="confirmar_password">
+                            Confirmar nueva contraseña
+                        </label>
+
+
+                        <div class="password-input">
+
+                            <i class="fa-solid fa-lock input-icon"></i>
+
+                            <input
+                                type="password"
+                                id="confirmar_password"
+                                name="confirmar_password"
+                                maxlength="255"
+                                placeholder="Confirme su nueva contraseña"
+                                autocomplete="new-password"
+                                required
+                            >
+
+
+                            <button
+                                type="button"
+                                class="mostrar-password"
+                                data-target="confirmar_password"
+                                aria-label="Mostrar contraseña"
+                            >
+
+                                <i class="fa-solid fa-eye"></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- BOTONES -->
+
+                    <div class="form-buttons">
+
+                        {% if modo_recuperacion %}
+
+                            <a
+                                href="{% url 'auth' %}"
+                                class="btn-secundario"
+                            >
+
+                                Cancelar
+
+                            </a>
+
+                        {% else %}
+
+                            <a
+                                href="{% url 'seguridad' %}"
+                                class="btn-secundario"
+                            >
+
+                                Cancelar
+
+                            </a>
+
+                        {% endif %}
+
+
+                        <button
+                            type="submit"
+                            class="btn-principal"
+                        >
+
+                            Cambiar contraseña
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <script src="{% static 'javascript/toast.js' %}"></script>
+
+
+    <script>
+
+        document
+            .querySelectorAll(".mostrar-password")
+            .forEach(button => {
+
+                button.addEventListener("click", () => {
+
+                    const input =
+                        document.getElementById(
+                            button.dataset.target
+                        );
+
+                    const icon =
+                        button.querySelector("i");
+
+
+                    if (input.type === "password") {
+
+                        input.type = "text";
+
+                        icon.classList.remove(
+                            "fa-eye"
+                        );
+
+                        icon.classList.add(
+                            "fa-eye-slash"
+                        );
+
+                        button.setAttribute(
+                            "aria-label",
+                            "Ocultar contraseña"
+                        );
+
+                    } else {
+
+                        input.type = "password";
+
+                        icon.classList.remove(
+                            "fa-eye-slash"
+                        );
+
+                        icon.classList.add(
+                            "fa-eye"
+                        );
+
+                        button.setAttribute(
+                            "aria-label",
+                            "Mostrar contraseña"
+                        );
+
+                    }
+
+                });
+
+            });
+
+    </script>
+
+</body>
+
+
+<footer>
+
+    <div class="copyright">
+
+        © 2026 Xiomex-Tech. Todos los derechos reservados.
+
+    </div>
+
+</footer>
+
+</html>

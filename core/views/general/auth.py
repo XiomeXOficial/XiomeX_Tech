@@ -1,8 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password, check_password
+from django.core.mail import send_mail
+from datetime import timedelta
+from django.utils import timezone
 
-from ..models.usuario import Usuario
+import secrets
+
+from ...models.usuario import Usuario
 
 def auth(request):
 
@@ -20,7 +25,7 @@ def auth(request):
             if usuario is None:
             
                 messages.error(request, "Correo o contraseña incorrectos.")
-                return redirect("/auth/")
+                return redirect("auth")
         
             if not check_password(
                 password,
@@ -28,7 +33,7 @@ def auth(request):
             ):
 
                 messages.error(request,"Correo o contraseña incorrectos.")
-                return redirect("/auth/")
+                return redirect("auth")
             
             request.session["usuario_id"] = usuario.usu_id
             request.session["usuario_nombre"] = usuario.usu_nombre
@@ -36,7 +41,7 @@ def auth(request):
 
             messages.success(request, "Bienvenido nuevamente.")
 
-            return redirect("/perfil/")
+            return redirect("perfil")
 
         if request.POST.get("formulario") == "registro":
 
@@ -60,18 +65,49 @@ def auth(request):
 
                 messages.error(request, "Este correo ya está registrado.")
                 return redirect("/auth/?mode=register")
+            
+            codigo = str(secrets.randbelow(900000)+100000)
 
-            Usuario.objects.create(
+            request.session["registro_nombre"] = nombre
+            request.session["registro_apellido"] = apellido
+            request.session["registro_correo"] = correo
+            request.session["registro_telefono"] = telefono
+            request.session["registro_password"] = password
+            request.session["codigo_verificacion"] = codigo
+            
+            request.session["codigo_expira"] = (
+                timezone.now() + timedelta(minutes=10)
+            ).isoformat()
+            
+            send_mail(
+                "Verificación de correo - XiomeX Tech",
+                f"""
+            Hola.
 
-                usu_nombre=nombre,
-                usu_apellido=apellido,
-                usu_correo=correo,
-                usu_telefono=telefono,
-                usu_contraseña=make_password(password)
+            Hemos recibido una solicitud para crear una cuenta
+            en XiomeX Tech.
 
+            Tu código de verificación es:
+
+            {codigo}
+
+            Ingresa este código en la página de verificación
+            para confirmar tu correo electrónico y completar
+            la creación de tu cuenta.
+
+            Si no solicitaste crear una cuenta, puedes ignorar
+            este correo.
+                """,
+                None,
+                [correo],
+                fail_silently=False,
             )
 
-            messages.success(request, "Cuenta creada correctamente.")
-            return redirect("/auth/")
+            messages.success(
+                request,
+                "Te hemos enviado un código de verificación a tu correo."
+            )
+
+            return redirect("verificar-correo")
 
     return render(request, "auth.html", {"mode": mode})

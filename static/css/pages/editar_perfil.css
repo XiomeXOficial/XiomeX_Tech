@@ -1,0 +1,113 @@
+.editar-perfil-container{
+    flex:1;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:40px;
+    background:var(--azul-principal);
+}
+
+.editar-perfil-card{
+    width:100%;
+    max-width:700px;
+    padding:45px;
+    background:var(--blanco);
+    border-radius:18px;
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
+}
+
+.editar-perfil-card h1{
+    margin:20px 0 10px;
+    color:var(--azul-principal);
+    font-size:32px;
+}
+
+.editar-perfil-card > p{
+    margin-bottom:30px;
+    color:#666;
+}
+
+.volver-link{
+    color:var(--azul-principal);
+    text-decoration:none;
+    font-weight:600;
+}
+
+.volver-link:hover{
+    color:var(--amarillo);
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    margin-bottom:20px;
+}
+
+.form-group label{
+    color:#555;
+    font-size:14px;
+    font-weight:600;
+}
+
+.form-group input{
+    width:100%;
+    padding:13px 15px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+    outline:none;
+    transition:var(--transicion);
+}
+
+.form-group input:focus{
+    border-color:var(--azul-principal);
+    box-shadow:0 0 0 3px rgba(1,30,96,.1);
+}
+
+.form-group input:disabled{
+    background:#eee;
+    color:#777;
+    cursor:not-allowed;
+}
+
+.form-buttons{
+    display:flex;
+    justify-content:flex-end;
+    gap:15px;
+    margin-top:30px;
+}
+
+.btn-principal,.btn-secundario{
+    padding:13px 24px;
+    border-radius:8px;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    text-decoration:none;
+    transition:var(--transicion);
+}
+
+.btn-principal{
+    border:none;
+    background:var(--azul-principal);
+    color:var(--blanco);
+}
+
+.btn-principal:hover{
+    background:var(--amarillo);
+    color:var(--negro);
+}
+
+.btn-secundario{
+    border:2px solid var(--azul-principal);
+    background:transparent;
+    color:var(--azul-principal);
+}
+
+.btn-secundario:hover{
+    background:var(--azul-principal);
+    color:var(--blanco);
+}
+

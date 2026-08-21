@@ -1,0 +1,138 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <title>XIOMEX TECH</title>
+
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet"
+          href="{% static 'css/base/base.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'css/base/footer.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'css/pages/recuperacion.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'css/components/toast.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'fontawesome/all.min.css' %}">
+
+</head>
+
+<body>
+
+    {% include "includes/toast.html" %}
+
+    <main class="verificacion-container">
+
+        <div class="verificacion-card">
+
+            <!-- ICONO -->
+
+            <div class="verificacion-icono">
+
+                <i class="fa-solid fa-key"></i>
+
+            </div>
+
+
+            <!-- TITULO -->
+
+            <h1>
+                Recuperar contraseña
+            </h1>
+
+
+            <!-- MENSAJE -->
+
+            <p class="verificacion-texto">
+
+                Ingresa el correo electrónico
+                asociado a tu cuenta.
+
+            </p>
+
+
+            <p class="verificacion-ayuda">
+
+                Te enviaremos un código de 6 dígitos
+                para verificar tu identidad.
+
+            </p>
+
+
+            <!-- FORMULARIO -->
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                <div class="input-box">
+
+                    <i class="fa-solid fa-envelope"></i>
+
+                    <input
+                        type="email"
+                        name="correo"
+                        placeholder="Digite su correo"
+                        maxlength="100"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    class="verificacion-btn"
+                    type="submit"
+                >
+
+                    Enviar código
+
+                </button>
+
+            </form>
+
+
+            <!-- VOLVER -->
+
+            <a
+                class="volver-link"
+                href="{% url 'auth' %}?mode=login"
+            >
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                Volver al inicio de sesión
+
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <script src="{% static 'javascript/toast.js' %}"></script>
+
+</body>
+
+
+<footer>
+
+    <div class="copyright">
+
+        © 2026 Xiomex-Tech. Todos los derechos reservados.
+
+    </div>
+
+</footer>
+
+</html>

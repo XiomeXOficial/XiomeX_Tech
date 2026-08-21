@@ -42,7 +42,11 @@
             <div class="perfil-icon">
                 <a class="perfil-text" href="{% url 'perfil' %}">
                     <div class="perfil-circulo">
-                        <i class="fa-solid fa-user"></i>
+                        {% if usuario and usuario.usu_img.name != "default.png" %}
+                            <img src="{{ usuario.usu_img.url }}" alt="Perfil">
+                        {% else %}
+                            <i class="fa-solid fa-user"></i>
+                        {% endif %}
                     </div>
 
                     <span>Perfil</span>
@@ -51,13 +55,27 @@
 
             <div class="perfil-dropdown">
 
-                <a href="{% url 'auth' %}">
-                    Iniciar Sesión
-                </a>
+                {% if request.session.usuario_id %}
 
-                <a href="{% url 'auth' %}?mode=register">
-                    Registrarse
-                </a>
+                    <a href="{% url 'perfil' %}">
+                        Mi perfil
+                    </a>
+
+                    <a href="{% url 'logout' %}">
+                        Cerrar sesión
+                    </a>
+
+                {% else %}
+
+                    <a href="{% url 'auth' %}">
+                        Iniciar Sesión
+                    </a>
+
+                    <a href="{% url 'auth' %}?mode=register">
+                        Registrarse
+                    </a>
+
+                {% endif %}
 
             </div>
 

@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Editar perfil - XIOMEX TECH</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/base/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pages/editar_perfil.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/toast.css' %}">
+    <link rel="stylesheet" href="{% static 'fontawesome/all.min.css' %}">
+</head>
+
+<body>
+
+{% include "includes/toast.html" %}
+
+<main>
+    <div class="editar-perfil-container">
+        <div class="editar-perfil-card">
+            <a href="{% url 'perfil' %}" class="volver-link"><i class="fa-solid fa-arrow-left"></i> Volver al perfil</a>
+
+            <h1>Editar mis datos</h1>
+            <p>Modifica la información que deseas actualizar.</p>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" value="{{ usuario.usu_nombre }}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="apellido">Apellido</label>
+                    <input type="text" id="apellido" name="apellido" value="{{ usuario.usu_apellido|default:'' }}">
+                </div>
+
+                <div class="form-group">
+                    <label for="correo">Correo electrónico</label>
+                    <input type="email" id="correo" value="{{ usuario.usu_correo }}" disabled>
+                </div>
+
+                <div class="form-group">
+                    <label for="telefono">Teléfono</label>
+                    <input type="text" id="telefono" name="telefono" value="{{ usuario.usu_telefono|default:'' }}">
+                </div>
+
+                <div class="form-buttons">
+                    <a href="{% url 'perfil' %}" class="btn-secundario">Cancelar</a>
+                    <button type="submit" class="btn-principal">Guardar cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+
+<script src="{% static 'javascript/toast.js' %}"></script>
+
+</body>
+</html>

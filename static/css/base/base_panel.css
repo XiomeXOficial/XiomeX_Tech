@@ -1,0 +1,152 @@
+/* =====================================================
+   ESTRUCTURA GENERAL DE CUENTA
+   ===================================================== */
+
+main {
+    flex: 1;
+    min-height: 0;
+}
+
+
+/* =====================================================
+   CONTENEDOR PRINCIPAL
+   ===================================================== */
+
+.cuenta-container {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    background: var(--fondo);
+}
+
+
+/* =====================================================
+   CONTENIDO DERECHO
+   ===================================================== */
+
+.cuenta-content {
+    flex: 1;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 45px;
+    background: var(--fondo);
+}
+
+
+/* =====================================================
+   TITULO DE LA VISTA
+   ===================================================== */
+
+.cuenta-content h1 {
+    margin: 0 0 30px;
+    color: var(--azul-principal);
+    font-size: 34px;
+    font-weight: 700;
+}
+
+
+/* =====================================================
+   TARJETA PRINCIPAL
+   ===================================================== */
+
+.cuenta-card {
+    width: 100%;
+    max-width: 1100px;
+    box-sizing: border-box;
+    padding: 35px;
+    background: var(--blanco);
+    border-radius: 18px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .08);
+}
+
+
+/* =====================================================
+   BOTON PRINCIPAL DE CUENTA
+   ===================================================== */
+
+.cuenta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 13px 22px;
+    border: none;
+    border-radius: 10px;
+    background: var(--azul-principal);
+    color: var(--blanco);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background .25s ease,
+        color .25s ease,
+        transform .25s ease;
+}
+
+.cuenta-btn:hover {
+    background: var(--amarillo);
+    color: var(--negro);
+    transform: translateY(-2px);
+}
+
+
+/* =====================================================
+   BOTON SECUNDARIO
+   ===================================================== */
+
+.cuenta-btn-secundario {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 12px 22px;
+    border: 2px solid var(--azul-principal);
+    border-radius: 10px;
+    background: transparent;
+    color: var(--azul-principal);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background .25s ease,
+        color .25s ease,
+        transform .25s ease;
+}
+
+.cuenta-btn-secundario:hover {
+    background: var(--azul-principal);
+    color: var(--blanco);
+    transform: translateY(-2px);
+}
+
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 900px) {
+
+    .cuenta-content {
+        padding: 30px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .cuenta-content {
+        padding: 20px;
+    }
+
+    .cuenta-content h1 {
+        font-size: 28px;
+    }
+
+    .cuenta-card {
+        padding: 25px;
+    }
+
+}

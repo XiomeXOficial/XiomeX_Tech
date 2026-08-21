@@ -1,24 +1,150 @@
-/*=========================================
-                MAIN
-=========================================*/
+/* =====================================================
+   TARJETA DE PERFIL
+   ===================================================== */
 
-main{
+.perfil-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 50px;
+}
 
-    flex:1;
 
-    display:flex;
+/* =====================================================
+   IMAGEN
+   ===================================================== */
 
-    justify-content:center;
+.perfil-imagen {
+    width: 220px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
 
-    align-items:center;
+
+.perfil-imagen img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid var(--azul-principal);
+}
+
+
+/* =====================================================
+   INFORMACIÓN
+   ===================================================== */
+
+.perfil-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+
+.perfil-dato {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+
+.perfil-dato label {
+    color: #666;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+
+
+.perfil-dato span {
+    color: var(--negro);
+    font-size: 18px;
+    word-break: break-word;
+}
+
+
+/* =====================================================
+   BOTONES DE PERFIL
+   ===================================================== */
+
+.perfil-botones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-top: 15px;
+}
+
+
+/* =====================================================
+   CORREO
+   ===================================================== */
+
+.correo-oculto {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.correo-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--azul-principal);
+    cursor: pointer;
+    font-size: 16px;
+    transition:
+        background .25s ease,
+        color .25s ease;
+}
+
+
+.correo-btn:hover {
+    background: var(--azul-principal);
+    color: var(--blanco);
+}
+
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 900px) {
+
+    .perfil-card {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .perfil-info {
+        width: 100%;
+    }
 
 }
 
-/*=========================================
-            TEMPORAL IMG
-=========================================*/
 
-.temporal-perfil-img img {
-    max-width: 100%;
-    height: auto;
+@media (max-width: 600px) {
+
+    .perfil-botones {
+        flex-direction: column;
+    }
+
+    .perfil-botones .cuenta-btn {
+        width: 100%;
+    }
+
+    .perfil-botones .cuenta-btn-secundario {
+        width: 100%;
+    }
+
 }

@@ -37,8 +37,8 @@ class Usuario(models.Model):
         max_length=255
     )
 
-    usu_img = models.CharField(
-        max_length=255,
+    usu_img = models.ImageField(
+        upload_to="perfiles/",
         default="default.png"
     )
 

@@ -1,0 +1,85 @@
+/* =====================================================
+   OPCIONES DE SEGURIDAD
+   ===================================================== */
+
+.seguridad-opcion {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+
+.seguridad-opcion + .seguridad-opcion {
+    margin-top: 28px;
+    padding-top: 28px;
+    border-top: 1px solid #e5e5e5;
+}
+
+
+/* =====================================================
+   ICONO
+   ===================================================== */
+
+.seguridad-opcion > i {
+    flex-shrink: 0;
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: rgba(1, 30, 96, .08);
+    color: var(--azul-principal);
+    font-size: 23px;
+}
+
+
+/* =====================================================
+   INFORMACIÓN
+   ===================================================== */
+
+.seguridad-opcion > div {
+    flex: 1;
+    min-width: 0;
+}
+
+
+.seguridad-opcion h2 {
+    margin: 0 0 6px;
+    color: var(--azul-principal);
+    font-size: 20px;
+}
+
+
+.seguridad-opcion p {
+    margin: 0;
+    color: #666;
+    font-size: 15px;
+    word-break: break-word;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 800px) {
+
+    .seguridad-opcion {
+        flex-wrap: wrap;
+    }
+
+    .seguridad-opcion .cuenta-btn {
+        width: 100%;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .seguridad-opcion {
+        align-items: flex-start;
+    }
+
+}

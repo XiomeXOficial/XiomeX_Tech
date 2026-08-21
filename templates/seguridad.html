@@ -1,0 +1,111 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <title>XIOMEX TECH</title>
+
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet"
+          href="{% static 'css/base/base.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'css/base/footer.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'css/base/sidebar.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'css/base/base_panel.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'css/pages/seguridad.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'css/components/toast.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'fontawesome/all.min.css' %}">
+
+</head>
+
+<body>
+
+{% include "includes/toast.html" %}
+
+<main>
+
+    <div class="cuenta-container">
+
+        {% include "includes/sidebar.html" %}
+
+        <section class="cuenta-content">
+
+            <h1>Seguridad</h1>
+
+            <div class="cuenta-card">
+
+                <div class="seguridad-opcion">
+
+                    <i class="fa-solid fa-envelope"></i>
+
+                    <div>
+
+                        <h2>Correo electrónico</h2>
+
+                        <p>
+                            {{ usuario.usu_correo }}
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="seguridad-opcion">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    <div>
+
+                        <h2>Contraseña</h2>
+
+                        <p>
+                            Puedes cambiar la contraseña
+                            de tu cuenta.
+                        </p>
+
+                    </div>
+
+                    <a
+                        href="{% url 'cambiar_contrasena' %}"
+                        class="cuenta-btn"
+                    >
+                        Cambiar contraseña
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+<script src="{% static 'javascript/toast.js' %}"></script>
+
+<footer>
+
+    <div class="copyright">
+        © 2026 Xiomex-Tech. Todos los derechos reservados.
+    </div>
+
+</footer>
+
+</body>
+
+</html>

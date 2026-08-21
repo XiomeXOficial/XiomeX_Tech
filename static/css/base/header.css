@@ -187,6 +187,13 @@ header{
     transition: var(--transicion);
 }
 
+.perfil-circulo img{
+    width:100%;
+    height:100%;
+    border-radius:50%;
+    object-fit:cover;
+}
+
 /* Texto */
 
 .perfil-text span{
@@ -197,12 +204,12 @@ header{
 /* Hover */
 
 .perfil-menu:hover .perfil-circulo{
-    background: var(--amarillo);
-    border-color: var(--negro);
+    background:var(--amarillo);
+    border-color:var(--negro);
 }
 
 .perfil-menu:hover .perfil-circulo i{
-    color: var(--negro);
+    color:var(--negro);
 }
 
 .perfil-menu:hover span{
