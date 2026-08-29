@@ -16,7 +16,7 @@ main {
 
     box-sizing: border-box;
 
-    background: var(--azul-secundario);
+    background:linear-gradient(135deg ,#000000,var(--azul-principal), #000000);
 
 }
 

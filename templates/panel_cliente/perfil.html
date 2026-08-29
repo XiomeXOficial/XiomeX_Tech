@@ -1,0 +1,172 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <title>XIOMEX TECH</title>
+
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet"
+          href="{% static 'css/base/base.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'css/base/sidebar.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'css/base/base_panel.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'css/pages/perfil.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'css/components/toast.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'fontawesome/all.min.css' %}">
+
+</head>
+
+<body>
+
+{% include "includes/toast.html" %}
+
+<main>
+
+    <div class="cuenta-container">
+
+        {% include "includes/sidebar.html" %}
+
+        <section class="cuenta-content">
+
+            <h1>MI PERFIL</h1>
+
+            <div class="cuenta-card perfil-card">
+
+                <div class="perfil-imagen">
+
+                    <img
+                        src="{{ usuario.usu_img.url }}"
+                        alt="Perfil"
+                    >
+
+                    <form
+                        id="foto-form"
+                        method="POST"
+                        enctype="multipart/form-data"
+                        action="{% url 'cambiar_foto' %}"
+                    >
+
+                        {% csrf_token %}
+
+                        <input
+                            id="foto-input"
+                            type="file"
+                            name="foto"
+                            accept="image/*"
+                            required
+                            hidden
+                        >
+
+                        <label
+                            for="foto-input"
+                            class="cuenta-btn-secundario"
+                        >
+                            Cambiar foto
+                        </label>
+
+                    </form>
+
+                </div>
+
+                <div class="perfil-info">
+
+                    <div class="perfil-dato">
+
+                        <label>Nombre</label>
+
+                        <span>
+                            {{ usuario.usu_nombre }}
+                        </span>
+
+                    </div>
+
+                    <div class="perfil-dato">
+
+                        <label>Apellido</label>
+
+                        <span>
+                            {{ usuario.usu_apellido }}
+                        </span>
+
+                    </div>
+
+                    <div class="perfil-dato">
+
+                        <label>Correo electrónico</label>
+
+                        <div class="correo-oculto">
+
+                            <span id="correo">
+                                {{ usuario.usu_correo }}
+                            </span>
+
+                            <button
+                                type="button"
+                                id="mostrar-correo"
+                                class="correo-btn"
+                            >
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="perfil-dato">
+
+                        <label>Teléfono</label>
+
+                        <span>
+                            {{ usuario.usu_telefono }}
+                        </span>
+
+                    </div>
+
+                    <div class="perfil-botones">
+
+                        <a
+                            href="{% url 'editar_perfil' %}"
+                            class="cuenta-btn"
+                        >
+                            Editar datos
+                        </a>
+
+                        <a
+                            href="{% url 'seguridad' %}"
+                            class="cuenta-btn"
+                        >
+                            Cambiar contraseña
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+<script src="{% static 'javascript/toast.js' %}"></script>
+
+<script src="{% static 'javascript/perfil.js' %}"></script>
+
+</body>
+
+</html>

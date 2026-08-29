@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core',
+    'app_xiomex',
 ]
 
 MIDDLEWARE = [
@@ -61,7 +61,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                "core.context_processors.usuario_actual",
+                "app_xiomex.context_processors.usuario_actual",
             ],
         },
     },

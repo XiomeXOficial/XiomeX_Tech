@@ -10,21 +10,33 @@
 
     <!-- Menú -->
     <div class="nav-links">
-        <a href="{% url 'index' %}">Inicio</a>
-        <a href="{% url 'productos' %}">Productos</a>
-        <a href="{% url 'servicios' %}">Servicios</a>
+        <a href="{% url 'index' %}" class="{% if request.path == '/' %}header-activo{% endif %}">Inicio</a>
+        <a href="{% url 'productos' %}" class="{% if request.path == '/productos/' %}header-activo{% endif %}">Productos</a>
+        <a href="{% url 'servicios' %}" class="{% if request.path == '/servicios/' %}header-activo{% endif %}">Servicios</a>
         <a href="{% url 'index' %}#footer">Acerca de</a>
     </div>
 
     <!-- Buscador -->
-    <form class="search-bar">
+    <form
+        class="search-bar"
+        action="{% url 'productos' %}"
+        method="GET"
+    >
+
         <input
             type="search"
-            placeholder="Busca productos o servicios">
+            name="q"
+            value="{{ request.GET.q|default:'' }}"
+            placeholder="Busca productos o servicios"
+            autocomplete="off"
+        >
 
         <button type="submit">
+
             <i class="fa-solid fa-magnifying-glass"></i>
+
         </button>
+
     </form>
 
     <!-- Iconos -->
@@ -42,7 +54,7 @@
             <div class="perfil-icon">
                 <a class="perfil-text" href="{% url 'perfil' %}">
                     <div class="perfil-circulo">
-                        {% if usuario and usuario.usu_img.name != "default.png" %}
+                        {% if usuario and usuario.usu_img.name != "default_perfil.png" %}
                             <img src="{{ usuario.usu_img.url }}" alt="Perfil">
                         {% else %}
                             <i class="fa-solid fa-user"></i>

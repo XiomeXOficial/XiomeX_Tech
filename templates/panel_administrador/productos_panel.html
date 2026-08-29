@@ -1,0 +1,753 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Productos - XIOMEX TECH</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/base/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base/sidebar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base/base_panel.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pages/panel_administrador/productos_panel.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/toast.css' %}">
+    <link rel="stylesheet" href="{% static 'fontawesome/all.min.css' %}">
+
+</head>
+
+<body>
+
+{% include "includes/toast.html" %}
+
+<main>
+    <div class="cuenta-container">
+        {% include "includes/sidebar.html" %}
+
+        <section class="cuenta-content">
+
+            <h1>
+                Administración de productos
+            </h1>
+
+            <div class="cuenta-card productos-card">
+
+                <div class="productos-header">
+
+                    <div class="productos-header-info">
+
+                        <h2>
+                            Productos registrados
+                        </h2>
+
+                        <p>
+                            Consulta y administra los productos
+                            registrados en XiomeX Tech.
+                        </p>
+
+                    </div>
+
+                    <div class="productos-buscador-container">
+
+                        <form
+                            method="GET"
+                            action="{% url 'productos_panel' %}"
+                            class="productos-buscador"
+                        >
+
+                            <i class="fa-solid fa-magnifying-glass"></i>
+
+                            <input
+                                type="text"
+                                name="q"
+                                id="buscar-producto"
+                                value="{{ busqueda }}"
+                                placeholder="Buscar producto..."
+                                autocomplete="off"
+                            >
+
+                        </form>
+
+                        <div
+                            id="resultados-busqueda-productos"
+                            class="resultados-busqueda-productos"
+                        >
+                        </div>
+
+                    </div>
+
+                    <div class="productos-botones">
+
+                        <a href="{% url 'crear_producto' %}"
+                            class="cuenta-btn">
+
+                            <i class="fa-solid fa-plus"></i>
+
+                            Crear producto
+
+                        </a>
+
+                        <a href="{% url 'categorias' %}"
+                            class="cuenta-btn-secundario">
+
+                            <i class="fa-solid fa-tags"></i>
+
+                            Categorías
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <div class="productos-tabla-container">
+
+                    <table class="productos-tabla">
+
+                        <thead>
+
+                            <tr>
+                                <th>Imagen</th>
+                                <th>Estado</th>
+                                <th>Producto</th>
+                                <th>Stock</th>
+                                <th>Precio</th>
+                                <th>Categoría</th>
+                                <th>Acciones</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="productos-body">
+
+                            {% for producto in productos %}
+
+                                <tr>
+
+                                    <td>
+
+                                        <div class="producto-miniatura">
+
+                                            {% if producto.prod_img %}
+
+                                                <img
+                                                    src="{{ producto.prod_img.url }}"
+                                                    alt="{{ producto.prod_nombre }}"
+                                                >
+
+                                            {% else %}
+
+                                                <img
+                                                    src="/media/default_producto.png"
+                                                    alt="Sin imagen"
+                                                >
+
+                                            {% endif %}
+
+                                        </div>
+
+                                    </td>
+
+                                    <td>
+
+                                        <span
+                                            class="producto-estado {{ producto.prod_estado }}"
+                                        >
+
+                                            {% if producto.prod_estado == "activo" %}
+
+                                                Activo
+
+                                            {% else %}
+
+                                                Inactivo
+
+                                            {% endif %}
+
+                                        </span>
+
+                                    </td>
+
+                                    <td>
+
+                                        <div class="producto-nombre">
+
+                                            <strong>
+
+                                                {{ producto.prod_nombre }}
+
+                                            </strong>
+
+                                            <span>
+
+                                                ID #{{ producto.prod_id }}
+
+                                            </span>
+
+                                        </div>
+
+                                    </td>
+
+                                    <td>
+
+                                        <span class="producto-stock">
+
+                                            {{ producto.prod_stock }}
+
+                                        </span>
+
+                                    </td>
+
+                                    <td>
+
+                                        <span class="producto-precio">
+
+                                            ${{ producto.prod_precio }}
+
+                                        </span>
+
+                                    </td>
+
+                                    <td>
+
+                                        {% if producto.categoria %}
+
+                                            {{ producto.categoria.catg_nombre }}
+
+                                        {% else %}
+
+                                            <span class="sin-categoria">
+
+                                                Sin categoría
+
+                                            </span>
+
+                                        {% endif %}
+
+                                    </td>
+
+                                    <td>
+
+                                        <div class="producto-acciones">
+
+                                            <button
+                                                type="button"
+                                                class="producto-accion producto-editar"
+                                                title="Editar producto"
+
+                                                data-id="{{ producto.prod_id }}"
+
+                                                data-nombre="{{ producto.prod_nombre }}"
+
+                                                data-descripcion="{{ producto.prod_descripcion|default:'' }}"
+
+                                                data-precio="{{ producto.prod_precio }}"
+
+                                                data-stock="{{ producto.prod_stock }}"
+
+                                                data-estado="{{ producto.prod_estado }}"
+
+                                                {% if producto.categoria %}
+
+                                                    data-categoria="{{ producto.categoria.catg_id }}"
+
+                                                {% else %}
+
+                                                    data-categoria=""
+
+                                                {% endif %}
+                                            >
+
+                                                <i class="fa-solid fa-pen"></i>
+
+                                            </button>
+
+                                            <button
+                                                type="button"
+                                                class="producto-accion producto-eliminar"
+                                                title="Eliminar producto"
+
+                                                data-id="{{ producto.prod_id }}"
+
+                                                data-nombre="{{ producto.prod_nombre }}"
+                                            >
+
+                                                <i class="fa-solid fa-trash"></i>
+
+                                            </button>
+
+                                        </div>
+
+                                    </td>
+
+                                </tr>
+
+                            {% empty %}
+
+                                <tr>
+
+                                    <td
+                                        colspan="7"
+                                        class="productos-sin-resultados"
+                                    >
+
+                                        <i class="fa-solid fa-box-open"></i>
+
+                                        <p>
+
+                                            {% if busqueda %}
+
+                                                No se encontraron productos para "{{ busqueda }}".
+
+                                            {% else %}
+
+                                                No hay productos registrados.
+
+                                            {% endif %}
+
+                                        </p>
+
+                                    </td>
+
+                                </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <p class="productos-contador">
+
+                    {% if busqueda %}
+
+                        Resultados encontrados:
+
+                    {% else %}
+
+                        Total de productos:
+
+                    {% endif %}
+
+                    <strong>
+
+                        {{ productos.paginator.count }}
+
+                    </strong>
+
+                </p>
+
+                {% if productos.has_other_pages %}
+
+                    <nav class="paginacion">
+
+
+                        {% if productos.has_previous %}
+
+                            <a
+                                href="?{% if busqueda %}q={{ busqueda|urlencode }}&{% endif %}page={{ productos.previous_page_number }}"
+                                title="Página anterior">
+
+                                <i class="fa-solid fa-chevron-left"></i>
+
+                            </a>
+
+                        {% endif %}
+
+                        {% for numero in productos.paginator.page_range %}
+
+                            {% if productos.number == numero %}
+
+                                <span class="pagina-activa">
+
+                                    {{ numero }}
+
+                                </span>
+
+                            {% else %}
+
+                                <a
+                                    href="?{% if busqueda %}q={{ busqueda|urlencode }}&{% endif %}page={{ numero }}"
+                                >
+
+                                    {{ numero }}
+
+                                </a>
+
+                            {% endif %}
+
+                        {% endfor %}
+
+
+                        {% if productos.has_next %}
+
+                            <a
+                                href="?{% if busqueda %}q={{ busqueda|urlencode }}&{% endif %}page={{ productos.next_page_number }}"
+                                title="Página siguiente"
+                            >
+
+                                <i class="fa-solid fa-chevron-right"></i>
+
+                            </a>
+
+                        {% endif %}
+
+
+                    </nav>
+
+                {% endif %}
+
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+<div
+    class="producto-modal-overlay"
+    id="modal-editar-producto"
+>
+
+    <div class="producto-modal">
+
+        <div class="producto-modal-header">
+
+            <h2>
+                Editar producto
+            </h2>
+
+            <button
+                type="button"
+                class="producto-modal-cerrar"
+                data-cerrar="modal-editar-producto"
+            >
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+        <form
+            method="POST"
+            enctype="multipart/form-data"
+        >
+
+            {% csrf_token %}
+
+            <input
+                type="hidden"
+                name="accion"
+                value="editar"
+            >
+
+            <input
+                type="hidden"
+                name="producto_id"
+                id="editar-producto-id"
+            >
+
+            <div class="producto-form-grid">
+
+                <div class="producto-form-grupo producto-form-completo">
+
+                    <label for="editar-nombre">
+
+                        Nombre del producto
+
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editar-nombre"
+                        name="nombre"
+                        maxlength="100"
+                        required
+                    >
+
+                </div>
+
+                <div class="producto-form-grupo producto-form-completo">
+
+                    <label for="editar-descripcion">
+
+                        Descripción
+
+                    </label>
+
+                    <textarea
+                        id="editar-descripcion"
+                        name="descripcion"
+                        rows="4"
+                    ></textarea>
+
+                </div>
+
+                <div class="producto-form-grupo">
+
+                    <label for="editar-precio">
+
+                        Precio
+
+                    </label>
+
+                    <input
+                        type="number"
+                        id="editar-precio"
+                        name="precio"
+                        min="0"
+                        step="0.01"
+                        required
+                    >
+
+                </div>
+
+                <div class="producto-form-grupo">
+
+                    <label for="editar-stock">
+
+                        Stock
+
+                    </label>
+
+                    <input
+                        type="number"
+                        id="editar-stock"
+                        name="stock"
+                        min="0"
+                        required
+                    >
+
+                </div>
+
+                <div class="producto-form-grupo">
+
+                    <label for="editar-estado">
+
+                        Estado
+
+                    </label>
+
+                    <select
+                        id="editar-estado"
+                        name="estado"
+                        required
+                    >
+
+                        <option value="activo">
+                            Activo
+                        </option>
+
+                        <option value="inactivo">
+                            Inactivo
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="producto-form-grupo">
+
+                    <label for="editar-categoria">
+
+                        Categoría
+
+                    </label>
+
+                    <select
+                        id="editar-categoria"
+                        name="categoria_id"
+                    >
+
+                        <option value="">
+                            Sin categoría
+                        </option>
+
+
+                        {% for categoria in categorias %}
+
+                            <option
+                                value="{{ categoria.catg_id }}"
+                            >
+
+                                {{ categoria.catg_nombre }}
+
+                            </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+
+                <!-- IMAGEN -->
+
+                <div class="producto-form-grupo producto-form-completo">
+
+                    <label for="editar-imagen">
+
+                        Nueva imagen
+
+                    </label>
+
+                    <input
+                        type="file"
+                        id="editar-imagen"
+                        name="imagen"
+                        accept="image/*"
+                    >
+
+                    <small>
+
+                        Déjalo vacío si deseas conservar la imagen actual.
+
+                    </small>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="producto-modal-botones">
+
+                <button
+                    type="button"
+                    class="cuenta-btn-secundario"
+                    data-cerrar="modal-editar-producto"
+                >
+
+                    Cancelar
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="cuenta-btn"
+                >
+
+                    <i class="fa-solid fa-floppy-disk"></i>
+
+                    Guardar cambios
+
+                </button>
+
+            </div>
+
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MODAL ELIMINAR PRODUCTO
+===================================================== -->
+
+<div
+    class="producto-modal-overlay"
+    id="modal-eliminar-producto"
+>
+
+    <div class="producto-modal producto-modal-eliminar">
+
+
+        <div class="producto-modal-icono">
+
+            <i class="fa-solid fa-triangle-exclamation"></i>
+
+        </div>
+
+
+        <h2>
+
+            ¿Eliminar producto?
+
+        </h2>
+
+
+        <p>
+
+            ¿Estás seguro de que quieres eliminar
+            el producto
+
+            <strong id="eliminar-producto-nombre"></strong>?
+
+        </p>
+
+
+        <p class="producto-advertencia">
+
+            Esta acción no se puede deshacer.
+
+        </p>
+
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+            <input
+                type="hidden"
+                name="accion"
+                value="eliminar"
+            >
+
+
+            <input
+                type="hidden"
+                name="producto_id"
+                id="eliminar-producto-id"
+            >
+
+
+            <div class="producto-modal-botones">
+
+                <button
+                    type="button"
+                    class="cuenta-btn-secundario"
+                    data-cerrar="modal-eliminar-producto"
+                >
+
+                    Cancelar
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="producto-btn-eliminar"
+                >
+
+                    <i class="fa-solid fa-trash"></i>
+
+                    Eliminar
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script src="{% static 'javascript/toast.js' %}"></script>
+<script src="{% static 'javascript/productos_busqueda.js' %}"></script>
+<script src="{% static 'javascript/productos_panel.js' %}"></script>
+
+
+</body>
+
+</html>

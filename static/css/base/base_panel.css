@@ -15,7 +15,7 @@ main {
 .cuenta-container {
     display: flex;
     width: 100%;
-    min-height: 100vh;
+    min-height: 0;
     background: var(--fondo);
 }
 
@@ -28,8 +28,9 @@ main {
     flex: 1;
     min-width: 0;
     box-sizing: border-box;
-    padding: 45px;
+    padding: 20px;
     background: var(--fondo);
+    min-height: 0;
 }
 
 

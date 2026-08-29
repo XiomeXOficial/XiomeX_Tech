@@ -350,7 +350,7 @@ CREATE TABLE `usuarios` (
   `usu_telefono` varchar(20) DEFAULT NULL COMMENT 'Teléfono de contacto',
   `usu_correo` varchar(100) NOT NULL COMMENT 'Correo electrónico',
   `usu_contraseña` varchar(255) NOT NULL COMMENT 'Contraseña cifrada',
-  `usu_img` varchar(255) DEFAULT 'default.png' COMMENT 'Ruta de foto de perfil'
+  `usu_img` varchar(255) DEFAULT 'default_perfil.png' COMMENT 'Ruta de foto de perfil'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -358,9 +358,9 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`usu_id`, `usu_nombre`, `usu_apellido`, `usu_rol`, `usu_telefono`, `usu_correo`, `usu_contraseña`, `usu_img`) VALUES
-(1, 'Michael', 'Ceballos', 'cliente', '1234567890', 'Michael@gmail.com', 'pbkdf2_sha256$600000$VRMhkD9uhYez6V9ZCWxgy6$Nq1fm5AODVI3VqUvwJSQqVha93RYs/9ZJ9kJfDsAN8Q=', 'default.png'),
-(2, 'Sofia', '', 'cliente', '', 'sofia@gmail.com', 'pbkdf2_sha256$600000$gMtX5NZ0OOgk9ndKBdSgrd$p8215f3q//oIFaPSgGcH1+31twd3EY5LdAWTnnAZ1WI=', 'default.png'),
-(3, 'Juanes', 'Ocampo', 'cliente', '1234567890', 'Juanes@gmail.com', 'pbkdf2_sha256$600000$v9jpAljDH8MZD8JhZCXEv2$RbEePjWEnCzS+sytbqSscErk5y46AFXG4e3ir8DRrWk=', 'default.png');
+(1, 'Michael', 'Ceballos', 'cliente', '1234567890', 'Michael@gmail.com', 'pbkdf2_sha256$600000$VRMhkD9uhYez6V9ZCWxgy6$Nq1fm5AODVI3VqUvwJSQqVha93RYs/9ZJ9kJfDsAN8Q=', 'default_perfil.png'),
+(2, 'Sofia', '', 'cliente', '', 'sofia@gmail.com', 'pbkdf2_sha256$600000$gMtX5NZ0OOgk9ndKBdSgrd$p8215f3q//oIFaPSgGcH1+31twd3EY5LdAWTnnAZ1WI=', 'default_perfil.png'),
+(3, 'Juanes', 'Ocampo', 'cliente', '1234567890', 'Juanes@gmail.com', 'pbkdf2_sha256$600000$v9jpAljDH8MZD8JhZCXEv2$RbEePjWEnCzS+sytbqSscErk5y46AFXG4e3ir8DRrWk=', 'default_perfil.png');
 
 --
 -- Índices para tablas volcadas

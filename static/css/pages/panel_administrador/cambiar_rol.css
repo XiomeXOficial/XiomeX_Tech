@@ -1,0 +1,272 @@
+/* =====================================================
+   ADMINISTRAR ROL
+   ===================================================== */
+
+.rol-card {
+    width: 100%;
+    max-width: 650px;
+}
+
+
+/* =====================================================
+   CABECERA
+   ===================================================== */
+
+.rol-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    margin-bottom: 30px;
+}
+
+.rol-icono {
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 12px;
+
+    background: rgba(1, 30, 96, .08);
+    color: var(--azul-principal);
+
+    font-size: 22px;
+}
+
+.rol-header h2 {
+    margin: 0 0 5px 0;
+
+    color: var(--azul-principal);
+
+    font-size: 22px;
+}
+
+.rol-header p {
+    margin: 0;
+
+    color: #666;
+
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   INFORMACIÓN DEL USUARIO
+   ===================================================== */
+
+.rol-usuario {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    padding: 18px;
+
+    margin-bottom: 25px;
+
+    border: 1px solid #eeeeee;
+    border-radius: 12px;
+
+    background: #fafafa;
+}
+
+.rol-usuario img {
+    width: 55px;
+    height: 55px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 2px solid #eeeeee;
+}
+
+.rol-usuario-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    min-width: 0;
+}
+
+.rol-usuario-info strong {
+    color: var(--negro);
+
+    font-size: 16px;
+}
+
+.rol-usuario-info span {
+    color: #777;
+
+    font-size: 13px;
+
+    word-break: break-word;
+}
+
+
+/* =====================================================
+   FORMULARIO
+   ===================================================== */
+
+.rol-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.rol-form label {
+    color: var(--azul-principal);
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.rol-form select {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 13px 15px;
+
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+
+    background: var(--blanco);
+    color: var(--negro);
+
+    font-size: 15px;
+
+    outline: none;
+
+    cursor: pointer;
+
+    transition:
+        border .25s ease,
+        box-shadow .25s ease;
+}
+
+.rol-form select:focus {
+    border-color: var(--azul-principal);
+
+    box-shadow:
+        0 0 0 3px rgba(1, 30, 96, .08);
+}
+
+
+/* =====================================================
+   DESCRIPCIÓN
+   ===================================================== */
+
+.rol-descripcion {
+    margin: 8px 0 5px 0;
+
+    color: #777;
+
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+/* =====================================================
+   BOTONES
+   ===================================================== */
+
+.rol-botones {
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: 20px;
+}
+
+.rol-btn {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 13px 22px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: var(--azul-principal);
+    color: var(--blanco);
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background .25s ease,
+        color .25s ease,
+        transform .2s ease;
+}
+
+.rol-btn:hover {
+    background: var(--amarillo);
+    color: var(--negro);
+
+    transform: translateY(-2px);
+}
+
+.rol-btn-secundario {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 12px 22px;
+
+    border: 2px solid var(--azul-principal);
+    border-radius: 10px;
+
+    background: transparent;
+    color: var(--azul-principal);
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition:
+        background .25s ease,
+        color .25s ease,
+        transform .2s ease;
+}
+
+.rol-btn-secundario:hover {
+    background: var(--azul-principal);
+    color: var(--blanco);
+
+    transform: translateY(-2px);
+}
+
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 600px) {
+
+    .rol-botones {
+        flex-direction: column;
+    }
+
+    .rol-btn,
+    .rol-btn-secundario {
+        width: 100%;
+    }
+
+}

@@ -1,0 +1,340 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <title>Usuarios - XIOMEX TECH</title>
+
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet"
+          href="{% static 'css/base/base.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'css/base/sidebar.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'css/base/base_panel.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'css/pages/panel_administrador/usuarios.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'css/pages/panel_administrador/confirmar_eliminacion.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'css/components/toast.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'fontawesome/all.min.css' %}">
+
+</head>
+
+<body>
+
+{% include "includes/toast.html" %}
+
+<main>
+
+    <div class="cuenta-container">
+
+        {% include "includes/sidebar.html" %}
+
+        <section class="cuenta-content">
+
+            <h1>Administración de usuarios</h1>
+
+            <div class="cuenta-card usuarios-card">
+
+                <div class="usuarios-header">
+
+                    <div class="usuarios-header-info">
+
+                        <h2>
+                            Usuarios registrados
+                        </h2>
+
+                        <p>
+                            Consulta y administra los usuarios
+                            registrados en XiomeX Tech.
+                        </p>
+
+                    </div>
+
+                    <div class="usuarios-buscador">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input
+                            type="text"
+                            id="buscar-usuario"
+                            placeholder="Buscar usuario..."
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="usuarios-tabla-container">
+
+                    <table
+                        class="usuarios-tabla"
+                        id="tabla-usuarios"
+                    >
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Usuario</th>
+
+                                <th>Correo</th>
+
+                                <th>Teléfono</th>
+
+                                <th>Rol</th>
+
+                                <th>Acciones</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="usuarios-body">
+
+                            {% for usuario in usuarios %}
+
+                                <tr>
+
+                                    <td>
+
+                                        <div class="usuario-info">
+
+                                            <img
+                                                src="{{ usuario.usu_img.url }}"
+                                                alt="Perfil"
+                                                class="usuario-foto"
+                                            >
+
+                                            <div class="usuario-nombre">
+
+                                                <strong>
+                                                    {{ usuario.usu_nombre }}
+                                                    {{ usuario.usu_apellido }}
+                                                </strong>
+
+                                                <span>
+                                                    ID #{{ usuario.usu_id }}
+                                                </span>
+
+                                            </div>
+
+                                        </div>
+
+                                    </td>
+
+
+                                    <td>
+
+                                        <span class="usuario-correo">
+                                            {{ usuario.usu_correo }}
+                                        </span>
+
+                                    </td>
+
+
+                                    <td>
+
+                                        {{ usuario.usu_telefono|default:"No registrado" }}
+
+                                    </td>
+
+
+                                    <td>
+
+                                        <span
+                                            class="usuario-rol {{ usuario.usu_rol }}"
+                                        >
+                                            {{ usuario.usu_rol }}
+                                        </span>
+
+                                    </td>
+
+
+                                    <td>
+
+                                        {% if usuario.usu_superadmin_original %}
+
+                                            <span class="usuario-protegido">
+
+                                                <i class="fa-solid fa-shield-halved"></i>
+
+                                                Protegido
+
+                                            </span>
+
+                                        {% else %}
+
+                                            <div class="usuario-acciones">
+
+                                                <a
+                                                    href="{% url 'cambiar_rol' usuario.usu_id %}"
+                                                    class="usuario-accion"
+                                                    title="Administrar rol"
+                                                >
+                                                    <i class="fa-solid fa-user-shield"></i>
+                                                </a>
+
+                                            {% if usuario.puede_administrar %}
+
+                                                <a
+
+                                                    href="{% url 'eliminar_usuario' usuario.usu_id %}"
+                                                    class="usuario-accion usuario-eliminar"
+                                                    title="Eliminar Usuario"
+                                                    data-usuario="{{ usuario.usu_nombre }} {{ usuario.usu_apellido }}"
+                                                >
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </a>
+
+                                            {% endif %} 
+
+                                            </div>
+
+                                        {% endif %}
+
+                                    </td>
+
+                                </tr>
+
+                            {% empty %}
+
+                                <tr>
+
+                                    <td
+                                        colspan="5"
+                                        class="usuarios-sin-resultados"
+                                    >
+
+                                        <i class="fa-solid fa-users"></i>
+
+                                        <p>
+                                            No hay usuarios registrados.
+                                        </p>
+
+                                    </td>
+
+                                </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <div
+                    class="usuarios-sin-resultados"
+                    id="sin-resultados"
+                    style="display: none;"
+                >
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <p>
+                        No se encontraron usuarios.
+                    </p>
+
+                </div>
+
+
+                <p class="usuarios-contador">
+
+                    Total de usuarios:
+                    <strong id="contador-usuarios">
+                        {{ usuarios|length }}
+                    </strong>
+
+                </p>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+<script>
+
+const buscador = document.getElementById("buscar-usuario");
+
+const filas = document.querySelectorAll(
+    "#usuarios-body tr"
+);
+
+const sinResultados =
+    document.getElementById("sin-resultados");
+
+const contador =
+    document.getElementById("contador-usuarios");
+
+
+buscador.addEventListener("input", function () {
+
+    const texto = this.value
+        .toLowerCase()
+        .trim();
+
+    let encontrados = 0;
+
+
+    filas.forEach(function (fila) {
+
+        const contenido =
+            fila.textContent.toLowerCase();
+
+        if (contenido.includes(texto)) {
+
+            fila.style.display = "";
+
+            encontrados++;
+
+        } else {
+
+            fila.style.display = "none";
+
+        }
+
+    });
+
+
+    if (texto !== "" && encontrados === 0) {
+
+        sinResultados.style.display = "block";
+
+    } else {
+
+        sinResultados.style.display = "none";
+
+    }
+
+
+    contador.textContent = encontrados;
+
+});
+
+</script>
+
+<script src="{% static 'javascript/toast.js' %}"></script>
+<script src="{% static 'javascript/usuarios.js' %}"></script>
+
+</body>
+
+</html>

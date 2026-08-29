@@ -1,0 +1,186 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <title>Administrar rol - XIOMEX TECH</title>
+
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet"
+          href="{% static 'css/base/base.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'css/base/footer.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'css/base/sidebar.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'css/base/base_panel.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'css/pages/panel_administrador/cambiar_rol.css' %}">
+
+    <link rel="stylesheet"
+        href="{% static 'css/components/toast.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'fontawesome/all.min.css' %}">
+
+</head>
+
+<body>
+
+{% include "includes/toast.html" %}
+
+<main>
+
+    <div class="cuenta-container">
+
+        {% include "includes/sidebar.html" %}
+
+        <section class="cuenta-content">
+
+    <h1>Administrar rol</h1>
+
+    <div class="cuenta-card rol-card">
+
+        <div class="rol-header">
+
+            <div class="rol-icono">
+                <i class="fa-solid fa-user-shield"></i>
+            </div>
+
+            <div>
+
+                <h2>
+                    Cambiar rol del usuario
+                </h2>
+
+                <p>
+                    Modifica los permisos de acceso de esta cuenta.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="rol-usuario">
+
+            <img
+                src="{{ usuario.usu_img.url }}"
+                alt="Perfil"
+            >
+
+            <div class="rol-usuario-info">
+
+                <strong>
+                    {{ usuario.usu_nombre }}
+                    {{ usuario.usu_apellido }}
+                </strong>
+
+                <span>
+                    {{ usuario.usu_correo }}
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <form
+            method="POST"
+            class="rol-form"
+        >
+
+            {% csrf_token %}
+
+            <label for="rol">
+                Seleccionar nuevo rol
+            </label>
+
+            <select
+                id="rol"
+                name="rol"
+                required
+            >
+
+                <option
+                    value="cliente"
+                    {% if usuario.usu_rol == "cliente" %}selected{% endif %}
+                >
+                    Cliente
+                </option>
+
+                <option
+                    value="administrador"
+                    {% if usuario.usu_rol == "administrador" %}selected{% endif %}
+                >
+                    Administrador
+                </option>
+
+                <option
+                    value="superadministrador"
+                    {% if usuario.usu_rol == "superadministrador" %}selected{% endif %}
+                >
+                    Superadministrador
+                </option>
+
+            </select>
+
+
+            <p class="rol-descripcion">
+                Los superadministradores tienen acceso a las funciones
+                administrativas y a la gestión de usuarios.
+            </p>
+
+
+            <div class="rol-botones">
+
+                <button
+                    type="submit"
+                    class="rol-btn"
+                >
+
+                    <i class="fa-solid fa-floppy-disk"></i>
+
+                    Guardar cambios
+
+                </button>
+
+
+                <a
+                    href="{% url 'usuarios' %}"
+                    class="rol-btn-secundario"
+                >
+
+                    <i class="fa-solid fa-arrow-left"></i>
+
+                    Cancelar
+
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</main>
+
+<footer>
+
+    <div class="copyright">
+        © 2026 XiomeX-Tech.
+        Todos los derechos reservados.
+    </div>
+
+</footer>
+
+</body>
+
+</html>

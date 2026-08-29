@@ -18,7 +18,8 @@
     <h2 class="sidebar-title">Cuenta</h2>
 
     <nav class="sidebar-nav">
-        <a href="{% url 'perfil' %}">
+        <a href="{% url 'perfil' %}" 
+            class="{% if request.path == '/perfil/' %}sidebar-activo{% endif %}">
             <i class="fa-solid fa-user"></i>
             Perfil
         </a>
@@ -28,9 +29,10 @@
             Mis pedidos
         </a>
 
-        <a href="{% url 'seguridad' %}">
+        <a href="{% url 'seguridad' %}" 
+            class="{% if request.path == '/seguridad/' %}sidebar-activo{% endif %}">
             <i class="fa-solid fa-lock"></i>
-            Seguridad
+            Seguridad Cuenta
         </a>
     </nav>
 
@@ -40,7 +42,7 @@
         <h2 class="sidebar-title">Administración</h2>
 
         <nav class="sidebar-nav">
-            <a href="#">
+            <a href="{% url 'productos_panel' %}">
                 <i class="fa-solid fa-box"></i>
                 Productos
             </a>
@@ -56,14 +58,14 @@
             </a>
         </nav>
     {% endif %}
-
+        <nav class="sidebar-nav">
     {% if request.session.usuario_rol == "superadministrador" %}
         <hr class="sidebar-divider">
 
         <h2 class="sidebar-title">Superadministrador</h2>
 
-        <nav class="sidebar-nav">
-            <a href="#">
+            <a href="{% url 'usuarios' %}"
+            class="{% if request.path == '/panel-administrador/usuarios/' %}sidebar-activo{% endif %}">
                 <i class="fa-solid fa-users"></i>
                 Usuarios
             </a>

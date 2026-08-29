@@ -1,0 +1,107 @@
+.crear-producto-card {
+    width: 95%;
+    box-sizing: border-box;
+}
+
+.crear-producto-header {
+    margin-bottom: 14.25px;
+}
+
+.crear-producto-header h2 {
+    margin: 0 0 6.65px 0;
+    color: var(--azul-principal);
+    font-size: 22.8px;
+}
+
+.crear-producto-header p {
+    margin: 0;
+    color: #666;
+    font-size: 13.3px;
+}
+
+.producto-form-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+    gap: 9.5px 23.75px;
+}
+
+.producto-form-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 7.6px;
+}
+
+.producto-form-grupo label {
+    color: #555;
+    font-size: 13.3px;
+    font-weight: 600;
+}
+
+.producto-form-grupo input,
+.producto-form-grupo select,
+.producto-form-grupo textarea {
+    width: 100%;
+    padding: 11.4px 13.3px;
+    border: 1px solid #ddd;
+    border-radius: 7.6px;
+    background: var(--blanco);
+    color: var(--negro);
+    font-family: inherit;
+    font-size: 13.3px;
+    outline: none;
+    transition:
+        border .25s ease,
+        box-shadow .25s ease;
+}
+
+.producto-form-grupo input:focus,
+.producto-form-grupo select:focus,
+.producto-form-grupo textarea:focus {
+    border-color: var(--azul-principal);
+    box-shadow:
+        0 0 0 2.85px rgba(1, 30, 96, .08);
+}
+
+.producto-form-grupo textarea {
+    resize: vertical;
+    min-height: 114px;
+}
+
+.producto-form-completo {
+    grid-column: 1 / -1;
+}
+
+.producto-form-botones {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 14.25px;
+    margin-top: 28.5px;
+    padding-top: 23.75px;
+    border-top: 1px solid #eeeeee;
+}
+
+.producto-form-botones a,
+.producto-form-botones button {
+    font-family: inherit;
+}
+
+@media (max-width: 700px) {
+    .producto-form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 500px) {
+    .producto-form-botones {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .producto-form-botones a,
+    .producto-form-botones button {
+        width: 100%;
+        text-align: center;
+    }
+}

@@ -1,0 +1,361 @@
+/* =====================================================
+   ADMINISTRACIÓN DE USUARIOS
+   ===================================================== */
+
+.usuarios-card {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+/* =====================================================
+   CABECERA
+   ===================================================== */
+
+.usuarios-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.usuarios-header-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.usuarios-header-info h2 {
+    margin: 0 0 7px 0;
+    color: var(--azul-principal);
+    font-size: 24px;
+}
+
+.usuarios-header-info p {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   BUSCADOR
+   ===================================================== */
+
+.usuarios-buscador {
+    width: 320px;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.usuarios-buscador i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #777;
+    pointer-events: none;
+}
+
+.usuarios-buscador input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 15px 12px 43px;
+
+    border: 1px solid #ddd;
+    border-radius: 10px;
+
+    background: var(--blanco);
+    color: var(--negro);
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+        border .25s ease,
+        box-shadow .25s ease;
+}
+
+.usuarios-buscador input:focus {
+    border-color: var(--azul-principal);
+
+    box-shadow:
+        0 0 0 3px rgba(1, 30, 96, .08);
+}
+
+
+/* =====================================================
+   CONTENEDOR TABLA
+   ===================================================== */
+
+.usuarios-tabla-container {
+    width: 100%;
+    overflow-x: auto;
+
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+}
+
+
+/* =====================================================
+   TABLA
+   ===================================================== */
+
+.usuarios-tabla {
+    width: 100%;
+    min-width: 850px;
+
+    border-collapse: collapse;
+    background: var(--blanco);
+}
+
+.usuarios-tabla th {
+    padding: 15px 18px;
+
+    background: var(--azul-principal);
+    color: var(--blanco);
+
+    font-size: 13px;
+    font-weight: 700;
+
+    text-align: left;
+    white-space: nowrap;
+}
+
+.usuarios-tabla td {
+    padding: 15px 18px;
+
+    border-bottom: 1px solid #eeeeee;
+
+    color: var(--negro);
+    font-size: 14px;
+
+    vertical-align: middle;
+}
+
+.usuarios-tabla tbody tr {
+    transition: background .2s ease;
+}
+
+.usuarios-tabla tbody tr:hover {
+    background: #85eafcd7;
+}
+
+.usuarios-tabla tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* =====================================================
+   USUARIO
+   ===================================================== */
+
+.usuario-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.usuario-foto {
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+    border: 2px solid #eeeeee;
+}
+
+.usuario-nombre {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.usuario-nombre strong {
+    color: var(--negro);
+    font-size: 14px;
+}
+
+.usuario-nombre span {
+    color: #777;
+    font-size: 12px;
+}
+
+
+/* =====================================================
+   CORREO
+   ===================================================== */
+
+.usuario-correo {
+    word-break: break-word;
+}
+
+
+/* =====================================================
+   ROL
+   ===================================================== */
+
+.usuario-rol {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 6px 11px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    text-transform: capitalize;
+}
+
+.usuario-rol.cliente {
+    background: rgba(1, 30, 96, .09);
+    color: var(--azul-principal);
+}
+
+.usuario-rol.administrador {
+    background: rgba(230, 100, 100, .12);
+    color: #c94d4d;
+}
+
+.usuario-rol.superadministrador {
+    background: #eeeeee;
+    color: #111;
+}
+
+
+/* =====================================================
+   ACCIONES
+   ===================================================== */
+
+.usuario-acciones {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.usuario-accion {
+    width: 36px;
+    height: 36px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #f1f3f5;
+    color: var(--azul-principal);
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        background .25s ease,
+        color .25s ease,
+        transform .2s ease;
+}
+
+.usuario-accion:hover {
+    background: var(--azul-principal);
+    color: var(--blanco);
+
+    transform: translateY(-2px);
+}
+
+
+/* =====================================================
+   ESTADO PROTEGIDO
+   ===================================================== */
+
+.usuario-protegido {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    color: #777;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.usuario-protegido i {
+    font-size: 13px;
+}
+
+
+/* =====================================================
+   SIN RESULTADOS
+   ===================================================== */
+
+.usuarios-sin-resultados {
+    padding: 45px 20px;
+
+    text-align: center;
+
+    color: #777;
+}
+
+.usuarios-sin-resultados i {
+    display: block;
+
+    margin-bottom: 12px;
+
+    font-size: 30px;
+    color: #aaa;
+}
+
+.usuarios-sin-resultados p {
+    margin: 0;
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   CONTADOR
+   ===================================================== */
+
+.usuarios-contador {
+    margin-top: 15px;
+
+    color: #777;
+
+    font-size: 13px;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 900px) {
+
+    .usuarios-header {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .usuarios-buscador {
+        width: 100%;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .usuarios-tabla th,
+    .usuarios-tabla td {
+        padding: 12px;
+    }
+
+    .usuario-acciones {
+        flex-wrap: wrap;
+    }
+
+}

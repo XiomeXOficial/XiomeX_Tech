@@ -9,6 +9,8 @@ CONTENEDOR GENERAL
     display: flex;
 
     min-height: 496px;
+    
+    background:linear-gradient(135deg ,#000000,var(--azul-principal), #000000);
 
     overflow: hidden;
 }
@@ -26,8 +28,6 @@ CONTENEDOR GENERAL
 
     justify-content:center;
     align-items:center;
-
-    background:linear-gradient(135deg,var(--azul-secundario),var(--azul-principal));
 
     overflow:hidden;
 

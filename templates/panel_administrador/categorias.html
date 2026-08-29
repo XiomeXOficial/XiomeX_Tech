@@ -1,0 +1,523 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <title>Categorías - XIOMEX TECH</title>
+
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet"
+          href="{% static 'css/base/base.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'css/base/sidebar.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'css/base/base_panel.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'css/pages/panel_administrador/categorias.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'css/components/toast.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'fontawesome/all.min.css' %}">
+
+</head>
+
+
+<body>
+
+{% include "includes/toast.html" %}
+
+
+<main>
+
+    <div class="cuenta-container">
+
+        {% include "includes/sidebar.html" %}
+
+
+        <section class="cuenta-content">
+
+            <h1>Administración de categorías</h1>
+
+
+            <div class="cuenta-card categorias-card">
+
+
+                <!-- ==========================================
+                     CABECERA
+                =========================================== -->
+
+                <div class="categorias-header">
+
+                    <div class="categorias-header-info">
+
+                        <h2>
+                            Categorías registradas
+                        </h2>
+
+                        <p>
+                            Administra las categorías de los
+                            productos de XiomeX Tech.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="cuenta-btn"
+                        id="abrir-crear-categoria"
+                    >
+
+                        <i class="fa-solid fa-plus"></i>
+
+                        Crear categoría
+
+                    </button>
+
+                        <a
+                            href="{% url 'productos_panel' %}"
+                            class="cuenta-btn-secundario"
+                        >
+                            Productos
+                        </a>
+
+                </div>
+
+
+                <!-- ==========================================
+                     TABLA
+                =========================================== -->
+
+                <div class="categorias-tabla-container">
+
+                    <table class="categorias-tabla">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>ID</th>
+
+                                <th>Categoría</th>
+
+                                <th>Acciones</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            {% for categoria in categorias %}
+
+                                <tr>
+
+                                    <td>
+
+                                        #{{ categoria.catg_id }}
+
+                                    </td>
+
+
+                                    <td>
+
+                                        <strong>
+                                            {{ categoria.catg_nombre }}
+                                        </strong>
+
+                                    </td>
+
+
+                                    <td>
+
+                                        <div class="categoria-acciones">
+
+
+                                            <!-- EDITAR -->
+
+                                            <button
+                                                type="button"
+                                                class="categoria-accion categoria-editar"
+                                                title="Editar categoría"
+
+                                                data-id="{{ categoria.catg_id }}"
+
+                                                data-nombre="{{ categoria.catg_nombre }}"
+                                            >
+
+                                                <i class="fa-solid fa-pen"></i>
+
+                                            </button>
+
+
+                                            <!-- ELIMINAR -->
+
+                                            <button
+                                                type="button"
+                                                class="categoria-accion categoria-eliminar"
+
+                                                title="Eliminar categoría"
+
+                                                data-id="{{ categoria.catg_id }}"
+
+                                                data-nombre="{{ categoria.catg_nombre }}"
+                                            >
+
+                                                <i class="fa-solid fa-trash"></i>
+
+                                            </button>
+
+
+                                        </div>
+
+                                    </td>
+
+                                </tr>
+
+
+                            {% empty %}
+
+                                <tr>
+
+                                    <td
+                                        colspan="3"
+                                        class="categorias-sin-resultados"
+                                    >
+
+                                        <i class="fa-solid fa-tags"></i>
+
+                                        <p>
+                                            No hay categorías registradas.
+                                        </p>
+
+                                    </td>
+
+                                </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <!-- ==========================================
+                     CONTADOR
+                =========================================== -->
+
+                <p class="categorias-contador">
+
+                    Total de categorías:
+
+                    <strong>
+                        {{ categorias|length }}
+                    </strong>
+
+                </p>
+
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+
+<!-- =====================================================
+     MODAL CREAR CATEGORÍA
+===================================================== -->
+
+<div
+    class="categoria-modal-overlay"
+    id="modal-crear"
+>
+
+    <div class="categoria-modal">
+
+        <div class="categoria-modal-header">
+
+            <h2>
+                Crear categoría
+            </h2>
+
+            <button
+                type="button"
+                class="categoria-modal-cerrar"
+                data-cerrar="modal-crear"
+            >
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <input
+                type="hidden"
+                name="accion"
+                value="crear"
+            >
+
+
+            <div class="categoria-form-grupo">
+
+                <label for="nombre-crear">
+                    Nombre de la categoría
+                </label>
+
+                <input
+                    type="text"
+                    id="nombre-crear"
+                    name="nombre"
+                    maxlength="50"
+                    required
+                    autocomplete="off"
+                    placeholder="Ej. Celulares"
+                >
+
+            </div>
+
+
+            <div class="categoria-modal-botones">
+
+                <button
+                    type="button"
+                    class="cuenta-btn-secundario"
+                    data-cerrar="modal-crear"
+                >
+                    Cancelar
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="cuenta-btn"
+                >
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Crear categoría
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MODAL EDITAR CATEGORÍA
+===================================================== -->
+
+<div
+    class="categoria-modal-overlay"
+    id="modal-editar"
+>
+
+    <div class="categoria-modal">
+
+        <div class="categoria-modal-header">
+
+            <h2>
+                Editar categoría
+            </h2>
+
+            <button
+                type="button"
+                class="categoria-modal-cerrar"
+                data-cerrar="modal-editar"
+            >
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <input
+                type="hidden"
+                name="accion"
+                value="editar"
+            >
+
+
+            <input
+                type="hidden"
+                name="categoria_id"
+                id="editar-categoria-id"
+            >
+
+
+            <div class="categoria-form-grupo">
+
+                <label for="nombre-editar">
+                    Nombre de la categoría
+                </label>
+
+                <input
+                    type="text"
+                    id="nombre-editar"
+                    name="nombre"
+                    maxlength="50"
+                    required
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <div class="categoria-modal-botones">
+
+                <button
+                    type="button"
+                    class="cuenta-btn-secundario"
+                    data-cerrar="modal-editar"
+                >
+                    Cancelar
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="cuenta-btn"
+                >
+
+                    <i class="fa-solid fa-floppy-disk"></i>
+
+                    Guardar cambios
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MODAL ELIMINAR
+===================================================== -->
+
+<div
+    class="categoria-modal-overlay"
+    id="modal-eliminar"
+>
+
+    <div class="categoria-modal categoria-modal-eliminar">
+
+        <div class="categoria-modal-icono">
+
+            <i class="fa-solid fa-triangle-exclamation"></i>
+
+        </div>
+
+
+        <h2>
+            ¿Eliminar categoría?
+        </h2>
+
+
+        <p>
+
+            ¿Estás seguro de que quieres eliminar
+            la categoría
+
+            <strong id="eliminar-categoria-nombre">
+            </strong>?
+
+        </p>
+
+
+        <p class="categoria-advertencia">
+
+            Esta acción no se puede deshacer.
+
+        </p>
+
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <input
+                type="hidden"
+                name="accion"
+                value="eliminar"
+            >
+
+            <input
+                type="hidden"
+                name="categoria_id"
+                id="eliminar-categoria-id"
+            >
+
+
+            <div class="categoria-modal-botones">
+
+                <button
+                    type="button"
+                    class="cuenta-btn-secundario"
+                    data-cerrar="modal-eliminar"
+                >
+                    Cancelar
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="categoria-btn-eliminar"
+                >
+
+                    <i class="fa-solid fa-trash"></i>
+
+                    Eliminar
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script src="{% static 'javascript/toast.js' %}"></script>
+
+<script src="{% static 'javascript/categorias.js' %}"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,247 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <title>Crear producto - XIOMEX TECH</title>
+
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet"
+          href="{% static 'css/base/base.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'css/base/sidebar.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'css/base/base_panel.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'css/pages/panel_administrador/crear_producto.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'css/components/toast.css' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'fontawesome/all.min.css' %}">
+
+</head>
+
+<body>
+
+{% include "includes/toast.html" %}
+
+<main>
+
+    <div class="cuenta-container">
+
+        {% include "includes/sidebar.html" %}
+
+        <section class="cuenta-content">
+
+            <div class="cuenta-card crear-producto-card">
+
+                <div class="crear-producto-header">
+
+                    <h2>
+                        Nuevo producto
+                    </h2>
+
+                    <p>
+                        Registra un nuevo producto en el catálogo
+                        de XiomeX Tech.
+                    </p>
+
+                </div>
+
+
+                <form
+                    method="POST"
+                    enctype="multipart/form-data"
+                    class="producto-form"
+                >
+
+                    {% csrf_token %}
+
+
+                    <div class="producto-form-grid">
+
+
+                        <div class="producto-form-grupo">
+
+                            <label for="nombre">
+                                Nombre del producto
+                            </label>
+
+                            <input
+                                type="text"
+                                id="nombre"
+                                name="nombre"
+                                maxlength="100"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="producto-form-grupo">
+
+                            <label for="categoria">
+                                Categoría
+                            </label>
+
+                            <select
+                                id="categoria"
+                                name="categoria"
+                            >
+
+                                <option value="">
+                                    Sin categoría
+                                </option>
+
+                                {% for categoria in categorias %}
+
+                                    <option
+                                        value="{{ categoria.catg_id }}"
+                                    >
+                                        {{ categoria.catg_nombre }}
+                                    </option>
+
+                                {% endfor %}
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="producto-form-grupo">
+
+                            <label for="precio">
+                                Precio
+                            </label>
+
+                            <input
+                                type="number"
+                                id="precio"
+                                name="precio"
+                                min="0"
+                                step="0.01"
+                                placeholder="0.00"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="producto-form-grupo">
+
+                            <label for="stock">
+                                Stock
+                            </label>
+
+                            <input
+                                type="number"
+                                id="stock"
+                                name="stock"
+                                min="0"
+                                step="1"
+                                placeholder="0"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="producto-form-grupo producto-form-completo">
+
+                            <label for="descripcion">
+                                Descripción
+                            </label>
+
+                            <textarea
+                                id="descripcion"
+                                name="descripcion"
+                                rows="5"
+                            ></textarea>
+
+                        </div>
+
+
+                        <div class="producto-form-grupo">
+
+                            <label for="estado">
+                                Estado
+                            </label>
+
+                            <select
+                                id="estado"
+                                name="estado"
+                            >
+
+                                <option value="activo">
+                                    Activo
+                                </option>
+
+                                <option value="inactivo">
+                                    Inactivo
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="producto-form-grupo">
+
+                            <label for="imagen">
+                                Imagen
+                            </label>
+
+                            <input
+                                type="file"
+                                id="imagen"
+                                name="imagen"
+                                accept="image/*"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="producto-form-botones">
+
+                        <a
+                            href="{% url 'productos_panel' %}"
+                            class="cuenta-btn-secundario"
+                        >
+                            Cancelar
+                        </a>
+
+                        <button
+                            type="submit"
+                            class="cuenta-btn"
+                        >
+                            <i class="fa-solid fa-plus"></i>
+                            Crear producto
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+<script src="{% static 'javascript/toast.js' %}"></script>
+
+</body>
+
+</html>
